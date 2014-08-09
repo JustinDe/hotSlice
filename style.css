@@ -1,0 +1,43 @@
+.navbar-padding{
+	margin-bottom: 100px;
+}
+
+.name-banner-cont{
+	width: 100%;
+	height:136px;
+	margin-top: 80px;
+}
+
+.name-banner-icon{
+	float: left;
+	width: 115px;
+}
+
+.name-banner-info{
+	float: left;
+}
+
+.name-banner-name{
+	padding: 0;
+	margin: 0;
+}
+
+.name-banner-badges{
+	float: right;
+	/*visibility: hidden;*/
+}
+.name-banner-badges img{
+	width: 64px;
+	height: 64px;
+	margin-top: 15px;
+}
+
+.core-stats-bar{
+	text-align: center;
+	margin-bottom: 40px;
+}
+.core-stats-bar span{
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
