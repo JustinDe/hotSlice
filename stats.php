@@ -1,13 +1,65 @@
-<?php include 'backbone.php'; ?>
+<?php 
+include 'backbone.php'; 
+
+//---------Stats--------
+//core
+$hp = $Character->getStat('core', 'hp');
+$mp = $Character->getStat('core', 'mp');
+$tp = $Character->getStat('core', 'tp');
+//attributes
+$strength = $Character->getStat('attributes', 'strength');
+$vitality = $Character->getStat('attributes', 'vitality');
+$dexterity = $Character->getStat('attributes', 'dexterity');
+$intelligence = $Character->getStat('attributes', 'intelligence');
+$mind = $Character->getStat('attributes', 'mind');
+$piety = $Character->getStat('attributes', 'piety');
+//elemental
+$fire = $Character->getStat('elemental', 'fire');
+$ice = $Character->getStat('elemental', 'ice');
+$wind = $Character->getStat('elemental', 'wind');
+$earth = $Character->getStat('elemental', 'earth');
+$lightning = $Character->getStat('elemental', 'lightning');
+$water = $Character->getStat('elemental', 'water');
+//offense
+$accuracy = $Character->getStat('offense', 'accuracy');
+$criticalHitRate = $Character->getStat('offense', 'critical hit rate');
+$determination = $Character->getStat('offense', 'determination');
+//defense
+$defense = $Character->getStat('defense', 'defense');
+$parry = $Character->getStat('defense', 'parry');
+$magicDefense = $Character->getStat('defense', 'magic defense');
+//physical
+$attackPower = $Character->getStat('physical', 'attack power');
+$skillSpeed = $Character->getStat('physical', 'skill speed');
+//resists
+$slashing = $Character->getStat('resists', 'slashing');
+$piercing = $Character->getStat('resists', 'piercing');
+$blunt = $Character->getStat('resists', 'blunt');
+//crafting
+$craftsmanship = $Character->getStat('crafting', 'craftsmanship');
+$control = $Character->getStat('crafting', 'control');
+//spell
+$attackMagicPotency = $Character->getStat('spell', 'attack magic potency');
+$healingMagicPotency = $Character->getStat('spell', 'healing magic potency');
+$spellSpeed = $Character->getStat('spell', 'spell speed');
+//pvp
+$morale = $Character->getStat('pvp', 'morale');
+//gathering
+$gathering = $Character->getStat('gathering', 'gathering');
+$perception = $Character->getStat('gathering', 'perception');
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pizza Time (beta)</title>
+	<title>HotSlice(beta)</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="style.css">
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="images/pizzaicon.png"/>
 </head>
 <body class="container">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,7 +70,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">AOE</a>
+			<a class="navbar-brand" href="index.php">Hot Slice</a>
 		</div>
 		<div class="navbar-collapse collapse" style="height: 1px;">
 			<ul class="nav navbar-nav">

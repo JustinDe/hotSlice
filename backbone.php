@@ -1,27 +1,23 @@
 <?php
 include "lodestone-api/api.php";
+session_start();
+
+if(!$_SESSION['userName'])
+{
+	header('Location: index.php') ;
+}
+
 $API = new LodestoneAPI();
 
 $Character = $API->get(array(
-  "name" => "Isial Fenner", 
-  "server" => "Lamia"
+  "name" => $_SESSION['userName'], 
+  "server" => $_SESSION['server']
 ));
 
-//group 1: Battle
-//group 2: Character
-//group 3:
-//group 4: Items
-//group 5: Synth
-//group 6: Gathering
-//group 7: 
-//group 8: Quests
-//group 9:
-//group 10:
-//group 11: Exploration
-//group 12: Grand company
-
-$API->parseAchievementsByCategory(1,$Character->getID());
-$achi_parse = $API->getAchievements()[1];
+if(!$Character)
+{
+	header('Location: notfound.php') ;
+}
 
 function calc_ilvl($Character)
 {
@@ -86,34 +82,63 @@ function build_jobs($Character)
 function find_dis($activeJob)
 {
 	$dis = "";
-	$dow_arr = ['Gladiator', 'Pugilist', 'Marauder', 'Lancer', 'Archer', 'Warrior', 'Paladin', 'Monk', 'Dragoon', 'Bard', 'Ninja'];
-	$dom_arr = ['Conjurer', 'Thaumaturge', 'Arcanist', 'White Mage', 'Black Mage', 'Summoner', 'Scholar'];
-	while($i <= count($dow_arr))
+
+	switch ($activeJob) 
 	{
-		if($dow_arr[$i] == $activeJob)
-		{
-			$dis = "dow"; 
-			$i = 100;
-		}
-		else
-		{
-			$dis = "idk";
-		}
-		$i++;
-	}
-	while($i<=count($dom_arr))
-	{
-		if($dom_arr[$i] == $activeJob)
-		{
-			$dis = "dom"; 
-			$i = 100;
-		}
-		else
-		{
-			$dis = "idk";
-		}
-		$i++;
-	}
+	    case "Gladiator":
+	       	$dis = "tank";
+	        break;
+	    case "Marauder":
+	        $dis = "tank";
+	        break;
+	    case "Warrior":
+	        $dis = "tank";
+	        break;
+	    case "Paladin":
+	        $dis = "tank";
+	        break;
+        case "Pugilist":
+	       	$dis = "flank";
+	        break;
+	    case "Lancer":
+	       	$dis = "flank";
+	        break;
+	    case "Archer":
+	       	$dis = "flank";
+	        break;
+	    case "Monk":
+	       	$dis = "flank";
+	        break;
+	    case "Dragoon":
+	       	$dis = "flank";
+	        break;
+	    case "Bard":
+	       	$dis = "flank";
+	        break;
+	    case "Summoner":
+	       	$dis = "flank";
+	        break;
+	    case "Conjurer":
+	       	$dis = "mage";
+	        break;
+	    case "Thaumaturge":
+	       	$dis = "mage";
+	        break;
+	    case "Arcanist":
+	       	$dis = "mage";
+	        break;
+	    case "White Mage":
+	       	$dis = "mage";
+	        break;
+	    case "Black Mage":
+	       	$dis = "mage";
+	        break;
+	    case "Scholar":
+	       	$dis = "mage";
+	        break;
+	    default:
+	    	$dis = "other";
+    }
 	return($dis);
 }
 
@@ -122,7 +147,6 @@ function trials_won($achi_parse)
 	$trialWins = array_fill(0, 6, 0);
 	for($i=0;$i<=count($achi_parse->get());$i++)
 	{
-		
 		if($achi_parse->get()[$i]['id'] == 855 && $achi_parse->get()[$i]['obtained'] == 1)//Ifrit Ex
 		{
 			$trialWins[0] = 1; //Ifrit Ex
@@ -176,113 +200,23 @@ function raids_won($achi_parse)
 	return($raidWins);
 }
 
-function star_sum($trials, $raids)
-{
-	$starSum = 0;
-	foreach($trials as $key=>$value)
-	{
-		$starSum += $value;
-	}
-	foreach($raids as $key=>$value)
-	{
-		$starSum += $value;
-	}
-	return($starSum/2);
-}
-
-
 //--------BasicInfo------
 $name = $Character->getName();
-$activeJob = $Character->getActiveJob()['name'];
+//$activeJob = $Character->getActiveJob()['name'];
+if($Character->getActiveJob()['name'])
+{
+	$activeJob = ucwords($Character->getActiveJob()['name']);
+}
+else
+{
+	$activeJob = ucwords($Character->getActiveClass());
+}
 $dis = find_dis($activeJob);
 $activeLevel = $Character->getActiveLevel();
 $server = $Character->getServer();
 $avatar = $Character->getAvatar(96);
 $portrait = $Character->getPortrait();
 $freeCompany = ucwords(strtolower($Character->getFreeCompany()['name']));
-$iLevel = calc_ilvl($Character);
+$iLevel = round(calc_ilvl($Character), 0, PHP_ROUND_HALF_DOWN);
 $jobs = build_jobs($Character);
-
-//---------Stats--------
-//core
-$hp = $Character->getStat('core', 'hp');
-$mp = $Character->getStat('core', 'mp');
-$tp = $Character->getStat('core', 'tp');
-//attributes
-$strength = $Character->getStat('attributes', 'strength');
-$vitality = $Character->getStat('attributes', 'vitality');
-$dexterity = $Character->getStat('attributes', 'dexterity');
-$intelligence = $Character->getStat('attributes', 'intelligence');
-$mind = $Character->getStat('attributes', 'mind');
-$piety = $Character->getStat('attributes', 'piety');
-//elemental
-$fire = $Character->getStat('elemental', 'fire');
-$ice = $Character->getStat('elemental', 'ice');
-$wind = $Character->getStat('elemental', 'wind');
-$earth = $Character->getStat('elemental', 'earth');
-$lightning = $Character->getStat('elemental', 'lightning');
-$water = $Character->getStat('elemental', 'water');
-//offense
-$accuracy = $Character->getStat('offense', 'accuracy');
-$criticalHitRate = $Character->getStat('offense', 'critical hit rate');
-$determination = $Character->getStat('offense', 'determination');
-//defense
-$defense = $Character->getStat('defense', 'defense');
-$parry = $Character->getStat('defense', 'parry');
-$magicDefense = $Character->getStat('defense', 'magic defense');
-//physical
-$attackPower = $Character->getStat('physical', 'attack power');
-$skillSpeed = $Character->getStat('physical', 'skill speed');
-//resists
-$slashing = $Character->getStat('resists', 'slashing');
-$piercing = $Character->getStat('resists', 'piercing');
-$blunt = $Character->getStat('resists', 'blunt');
-//crafting
-$craftsmanship = $Character->getStat('crafting', 'craftsmanship');
-$control = $Character->getStat('crafting', 'control');
-//spell
-$attackMagicPotency = $Character->getStat('spell', 'attack magic potency');
-$healingMagicPotency = $Character->getStat('spell', 'healing magic potency');
-$spellSpeed = $Character->getStat('spell', 'spell speed');
-//pvp
-$morale = $Character->getStat('pvp', 'morale');
-//gathering
-$gathering = $Character->getStat('gathering', 'gathering');
-$perception = $Character->getStat('gathering', 'perception');
-
-//---------Gear List------------
-$main = $Character->getSlot('main')['name'];
-$shield = $Character->getSlot('shield')['name'];
-$head = $Character->getSlot('head')['name'];
-$body = $Character->getSlot('body')['name'];
-$waist = $Character->getSlot('waist')['name'];
-$legs = $Character->getSlot('legs')['name'];
-$feet = $Character->getSlot('feet')['name'];
-$necklace = $Character->getSlot('necklace')['name'];
-$earrings = $Character->getSlot('earrings')['name'];
-$bracelets = $Character->getSlot('bracelets')['name'];
-$ring = $Character->getSlot('ring')['name'];
-$ring2 = $Character->getSlot('ring2')['name'];
-
-//--------Achievements----------
-$trials = trials_won($achi_parse);
-$raids = raids_won($achi_parse);
-
-//--------Stars-----------
-$stars = star_sum($trials, $raids);
-
-/*
-echo($name)."<br />";
-echo($activeJob)."<br />";
-echo($activeLevel)."<br />";
-echo($server)."<br />";
-echo($portrait)."<br />";
-echo($freeCompany)."<br />";
-echo($iLevel)."<br />";
-foreach($jobs as $key=>$value)
-{
-	echo($value[0]." ".$value[1]." - ".$value[2]."/".$value[3]."<br />");
-}
-*/
-
 ?>

@@ -1,13 +1,31 @@
-<?php include 'backbone.php'; ?>
+<?php 
+include 'backbone.php'; 
+
+$API->parseAchievementsByCategory(1,$Character->getID());
+$achi_parse = $API->getAchievements()[1];
+
+if($achi_parse->getTotalPoints())
+{
+	$trials = trials_won($achi_parse);
+	$raids = raids_won($achi_parse);
+}
+else
+{
+	$trials = array_fill(0, 6, 2);
+	$raids = array_fill(0, 4, 2);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pizza Time (beta)</title>
+	<title>HotSlice(beta)</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="style.css">
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="images/pizzaicon.png"/>
 </head>
 <body class="container">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,7 +36,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">AOE</a>
+			<a class="navbar-brand" href="index.php">Hot Slice</a>
 		</div>
 		<div class="navbar-collapse collapse" style="height: 1px;">
 			<ul class="nav navbar-nav">
@@ -79,9 +97,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($raids[0] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -94,9 +116,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($raids[1] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -109,9 +135,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($raids[2] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -124,9 +154,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($raids[3] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -159,9 +193,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($trials[0] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -174,9 +212,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($trials[1] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -189,9 +231,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($trials[2] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -204,9 +250,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($trials[3] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -219,9 +269,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($trials[4] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>
@@ -234,9 +288,13 @@
 									{
 										echo("<span class='label label-success'>Complete</span>");
 									}
-									else
+									elseif($trials[5] == 0)
 									{
 										echo("<span class='label label-danger'>Incomplete</span>");
+									}
+									else
+									{
+										echo("<span class='label label-warning'>Hidden</span>");
 									}
 								?>
 							</td>

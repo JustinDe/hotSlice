@@ -1,13 +1,17 @@
-<?php include 'backbone.php'; ?>
+<?php 
+include 'backbone.php'; 
+$accuracy = $Character->getStat('offense', 'accuracy');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pizza Time (beta)</title>
+	<title>HotSlice(beta)</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="style.css">
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="images/pizzaicon.png"/>
 </head>
 <body class="container">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,13 +22,13 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">AOE</a>
+			<a class="navbar-brand" href="index.php">Hot Slice</a>
 		</div>
 		<div class="navbar-collapse collapse" style="height: 1px;">
 			<ul class="nav navbar-nav">
 				<li><a href="stats.php">Stats</a></li>
 				<li><a href="gear.php">Gear</a></li>
-				<li><a href="gear.php">Wins</a></li>
+				<li><a href="wins.php">Wins</a></li>
 				<li class="active"><a href="#">Caps</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
@@ -88,29 +92,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 470)
+	                			if($accuracy >= 472)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/472</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/472</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 430)
+	                			if($accuracy >= 460)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/460</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/460</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 432)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/432</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/432</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -133,29 +148,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 470)
+	                			if($accuracy >= 475)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/475</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/475</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 430)
+	                			if($accuracy >= 460)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/460</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/460</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 432)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/432</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/432</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -178,29 +204,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 470)
+	                			if($accuracy >= 472)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/472</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/472</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 430)
+	                			if($accuracy >= 460)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/460</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/460</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 432)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/432</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/432</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -223,29 +260,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 470)
+	                			if($accuracy >= 472)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/472</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/470</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/472</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 430)
+	                			if($accuracy >= 460)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/460</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/430</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/460</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 432)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/432</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/432</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -268,29 +316,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 480)
+	                			if($accuracy >= 486)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/480</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/486</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/480</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/486</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 450)
+	                			if($accuracy >= 472)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/450</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/472</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/450</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/472</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 432)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/432</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/432</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -304,29 +363,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 490)
+	                			if($accuracy >= 489)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/490</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/489</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/490</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/489</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 455)
+	                			if($accuracy >= 471)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/455</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/471</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/455</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/471</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 451)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/451</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/451</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -340,29 +410,40 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 493)
+	                			if($accuracy >= 495)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/493</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/495</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/493</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/495</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
 	                		{
-	                			if($accuracy >= 455)
+	                			if($accuracy >= 481)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/455</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/481</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/455</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/481</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "mage")
+	                		{
+	                			if($accuracy >= 451)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/451</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/451</span>");
+	                			}
+	                		}
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -376,18 +457,29 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
-	                			if($accuracy >= 493)
+	                			if($accuracy >= 513)
 	                			{
-	                				echo("<span class='label label-success'>Pass: ".$accuracy."/493</span>");
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/513</span>");
 	                			}
 	                			else
 	                			{
-	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/493</span>");
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/513</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
+	                		{
+	                			if($accuracy >= 491)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/491</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/491</span>");
+	                			}
+	                		}
+	                		if($dis == "mage")
 	                		{
 	                			if($accuracy >= 471)
 	                			{
@@ -398,7 +490,7 @@
 	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/471</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -412,7 +504,7 @@
 	                </td>
 	                <td>
 	                	<?php
-	                		if($dis == "dow")
+	                		if($dis == "tank")
 	                		{
 	                			if($accuracy >= 515)
 	                			{
@@ -423,7 +515,18 @@
 	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/515</span>");
 	                			}
 	                		}
-	                		if($dis == "dom")
+	                		if($dis == "flank")
+	                		{
+	                			if($accuracy >= 491)
+	                			{
+	                				echo("<span class='label label-success'>Pass: ".$accuracy."/491</span>");
+	                			}
+	                			else
+	                			{
+	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/491</span>");
+	                			}
+	                		}
+	                		if($dis == "mage")
 	                		{
 	                			if($accuracy >= 470)
 	                			{
@@ -434,7 +537,7 @@
 	                				echo("<span class='label label-danger'>Fail: ".$accuracy."/470</span>");
 	                			}
 	                		}
-	                		if($dis == "idk")
+	                		if($dis == "other")
 	                		{
 	                			echo("<span class='label label-warning'>N/A</span>");
 	                		}
@@ -552,13 +655,6 @@
 	            </tbody>
 	          </table>
 	        </div>
-
-
-
-
-
-
-
 		</div>
 	</div>
 </body>

@@ -1,13 +1,29 @@
-<?php include 'backbone.php'; ?>
+<?php 
+include 'backbone.php'; 
+//---------Gear List------------
+$main = $Character->getSlot('main')['name'];
+$shield = $Character->getSlot('shield')['name'];
+$head = $Character->getSlot('head')['name'];
+$body = $Character->getSlot('body')['name'];
+$waist = $Character->getSlot('waist')['name'];
+$legs = $Character->getSlot('legs')['name'];
+$feet = $Character->getSlot('feet')['name'];
+$necklace = $Character->getSlot('necklace')['name'];
+$earrings = $Character->getSlot('earrings')['name'];
+$bracelets = $Character->getSlot('bracelets')['name'];
+$ring = $Character->getSlot('ring')['name'];
+$ring2 = $Character->getSlot('ring2')['name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pizza Time (beta)</title>
+	<title>HotSlice(beta)</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="style.css">
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="images/pizzaicon.png"/>
 </head>
 <body class="container">
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,7 +34,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.php">AOE</a>
+			<a class="navbar-brand" href="index.php">Hot Slice</a>
 		</div>
 		<div class="navbar-collapse collapse" style="height: 1px;">
 			<ul class="nav navbar-nav">

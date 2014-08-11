@@ -41,3 +41,30 @@
 	padding-right: 10%;
 }
 
+.center_div{
+    margin: 0 auto;
+    margin-top: 45px;
+    width:35%;
+}
+.not-found{
+	padding-top: 30px;
+	text-align: center;
+}
+
+.server-list{
+	width:364px !important;
+	margin-top: 10px;
+}
+
+.search-button{
+	width:364px !important;
+	margin-top: 10px;
+}
+
+.search-text{
+	width:180px !important;
+}
+
+.search-area{
+	text-align: center;
+}
