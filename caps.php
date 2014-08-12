@@ -4,61 +4,11 @@ $accuracy = $Character->getStat('offense', 'accuracy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>HotSlice(beta)</title>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="style.css">
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<link rel="icon" type="image/png" href="images/pizzaicon.png"/>
-</head>
-<body class="container">
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.php">Hot Slice</a>
-		</div>
-		<div class="navbar-collapse collapse" style="height: 1px;">
-			<ul class="nav navbar-nav">
-				<li><a href="stats.php">Stats</a></li>
-				<li><a href="gear.php">Gear</a></li>
-				<li><a href="wins.php">Wins</a></li>
-				<li class="active"><a href="#">Caps</a></li>
-			</ul>
-		</div><!--/.nav-collapse -->
-	</div>
-	<!--end of nav-->
-	<div class="name-banner-cont well">
-		<div class="name-banner-icon">
-			<img class="img-thumbnail" src=<?php echo($avatar); ?>/>
-		</div>
-		<div class="name-banner-info">
-			<h3 class="name-banner-name"><?php echo($name." (".$server.")"); ?></h3>
-			<text class="name-banner-fc">Free Company: <?php echo($freeCompany); ?></text><br/>
-			<text><?php echo($activeJob.": ".$activeLevel); ?></text><br/>
-			<text>iLevel: <?php echo($iLevel); ?></text>
-		</div>
-		<div class="name-banner-badges">
-			<?php
-				if(is_float($stars))
-				{
-					echo("<img src='images/halfstar.png'/>");
-				}
-				$round_stars = round($stars, 0, PHP_ROUND_HALF_DOWN);
-				for($i=1;$i<=$round_stars;$i++)
-				{
-					echo("<img src='images/star.png'/>");
-				}
-			?>
-		</div>
-	</div>
-	<!--end of name banner-->
+	<?php include 'header.php'; ?>
+	<script type="text/javascript">
+		var d = document.getElementById("mi-caps");
+		d.className = d.className + "active";
+	</script>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Caps</h3>
@@ -657,5 +607,14 @@ $accuracy = $Character->getStat('offense', 'accuracy');
 	        </div>
 		</div>
 	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-36503187-2', 'auto');
+		ga('send', 'pageview');
+	</script>
 </body>
 </html>
